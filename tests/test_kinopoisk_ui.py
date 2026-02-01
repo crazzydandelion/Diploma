@@ -11,36 +11,6 @@ class TestKinopoiskNavigation:
     Тесты навигации по сайту Кинопоиск.
     """
 
-    @allure.title("Полный сценарий навигации по Кинопоиску")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.tag("e2e", "navigation", "regression")
-    def test_complete_kinopoisk_navigation(self, driver):
-        """
-        Полный E2E тест навигации по Кинопоиску.
-        Включает поиск, переходы по разделам и работу с медиа.
-        """
-        # Создаем экземпляр главной страницы
-        main_page = MainPage(driver)
-
-        # Выполняем полный сценарий
-        with allure.step("Запуск полного сценария навигации"):
-            main_page.complete_navigation_scenario(movie_name="Мимино")
-
-        with allure.step("Проверка завершения сценария"):
-            # Пример проверки
-            current_url = driver.current_url
-            allure.attach(
-                f"✅ Сценарий успешно выполнен\n"
-                f"Финальный URL: {current_url}\n"
-                f"Заголовок: {driver.title}",
-                name="Результат выполнения",
-                attachment_type=allure.attachment_type.TEXT
-            )
-
-            # Простая проверка
-            assert driver.current_url is not None
-            print(f"✅ Тест завершен. Финальный URL: {current_url}")
-
     @allure.title("Поиск фильма на Кинопоиске")
     @allure.severity(allure.severity_level.NORMAL)
     @pytest.mark.parametrize("movie_name", ["Мимино", "Ирония судьбы", "Брат"])
@@ -115,3 +85,33 @@ class TestKinopoiskNavigation:
         # Проверка
         assert "rubric/318" in driver.current_url, \
             "Не перешли в рубрику 'Меня зовут...'"
+
+    @allure.title("Полный сценарий навигации по Кинопоиску")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.tag("e2e", "navigation", "regression")
+    def test_complete_kinopoisk_navigation(self, driver):
+            """
+        Полный E2E тест навигации по Кинопоиску.
+        Включает поиск, переходы по разделам и работу с медиа.
+        """
+        # Создаем экземпляр главной страницы
+            main_page = MainPage(driver)
+
+        # Выполняем полный сценарий
+            with allure.step("Запуск полного сценария навигации"):
+                main_page.complete_navigation_scenario(movie_name="Мимино")
+
+            with allure.step("Проверка завершения сценария"):
+                # Пример проверки
+                current_url = driver.current_url
+                allure.attach(
+                    f"✅ Сценарий успешно выполнен\n"
+                    f"Финальный URL: {current_url}\n"
+                    f"Заголовок: {driver.title}",
+                    name="Результат выполнения",
+                    attachment_type=allure.attachment_type.TEXT
+                )
+
+                # Простая проверка
+                assert driver.current_url is not None
+                print(f"✅ Тест завершен. Финальный URL: {current_url}")
